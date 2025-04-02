@@ -12,7 +12,7 @@ export const protectRoute = async (req, res, next) => {
 
         const decoded = jwt.verify(token, ENV_VARS.JWT_SECRET);
 
-        if(!decode){
+        if(!decoded){
             return res.status(401).json({success: false, message: "Invalid token. Please login again"});
         }
 
