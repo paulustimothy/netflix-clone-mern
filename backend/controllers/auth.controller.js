@@ -92,7 +92,7 @@ export async function login(req, res) {
 
 export async function logout(req, res) {
   try {
-    res.clearCookie("jsw-netflix");
+    res.clearCookie("jwt-netflix");
     res.status(200).json({ success: true, message: "Logged out successfully" });
   } catch (error) {
     console.error("Error logging out:", error);
@@ -100,3 +100,11 @@ export async function logout(req, res) {
   }
 }
 
+export async function authCheck(req, res) {
+  try {
+    res.status(200).json({success: true, user: req.user});
+  } catch (error) {
+    console.log("Error in authCheck controller", error.message);
+    return res.status(500).json({ success: false, message: "Internal server error" });
+  }
+}
