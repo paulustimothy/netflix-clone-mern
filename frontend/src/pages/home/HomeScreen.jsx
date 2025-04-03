@@ -1,13 +1,17 @@
-import React from 'react'
+import { useState } from 'react'
 import Navbar from '../../components/navbar'
 import { Play, Info } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import useGetTrendingContent from '../../hooks/useGetTrendingContent.jsx'
-import { ORIGINAL_IMG_BASE_URL, SMALL_IMG_BASE_URL } from '../../utils/constanst'
+import { ORIGINAL_IMG_BASE_URL, MOVIE_CATEGORIES, TV_CATEGORIES } from '../../utils/constants.js'
+import { useContentStore } from '../../store/content'
+import ContentSlider from '../../components/contentSlider'
 
 const HomeScreen = () => {
 
 	const {trendingContent} = useGetTrendingContent();
+	const {contentType} = useContentStore();
+	const [imgLoading, setImgLoading] = useState(true);
 	
 	if (!trendingContent)
 		return (
@@ -22,10 +26,18 @@ const HomeScreen = () => {
     <div className='relative h-screen text-white '>
 				<Navbar />
 
+				{imgLoading && (
+					<div className='h-screen text-white relative'>
+					<Navbar />
+					<div className='absolute top-0 left-0 w-full h-full bg-black/70 flex items-center justify-center -z-10 shimmer' />
+				</div>
+				)}
+
 				<img
 					src={ORIGINAL_IMG_BASE_URL + trendingContent?.backdrop_path}
 					alt='Hero img'
 					className='absolute top-0 left-0 w-full h-full object-cover -z-50'
+					onLoad={() => setImgLoading(false)}
 				/>
 
 				<div className='absolute top-0 left-0 w-full h-full bg-black/50 -z-50' aria-hidden='true' />
@@ -70,6 +82,12 @@ const HomeScreen = () => {
 					</div>
 				</div>
 			</div>
+
+	<div className='flex flex-col gap-10 bg-black py-10'>
+		{contentType === "movie"
+			? MOVIE_CATEGORIES.map((category) => <ContentSlider key={category} category={category} />)
+			: TV_CATEGORIES.map((category) => <ContentSlider key={category} category={category} />)}
+	</div>
     </>
   )
 }
