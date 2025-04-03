@@ -1,12 +1,12 @@
 import express from "express";
-import { getTrending, getTrailers, getDetails, getSimilar, getByCategory } from "../controllers/media.controller.js";
+import { getTrendingMovie, getMovieTrailers, getMovieDetails, getSimilarMovie, getMovieByCategory } from "../controllers/movie.controller.js";
 
 const router = express.Router();
 
-router.get("/trending", getTrending);
-router.get("/:id/trailers", getTrailers);
-router.get("/:id/details", getDetails);
-router.get("/:id/similar", getSimilar);
-router.get("/:category", getByCategory);
+router.get("/trending", getTrendingMovie);
+router.get("/:id/trailers", getMovieTrailers);
+router.get("/:id/details", getMovieDetails);
+router.get("/:id/similar", getSimilarMovie);
+router.get("/:category", getMovieByCategory);
 
 export default router;
