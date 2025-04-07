@@ -6,14 +6,13 @@ A Netflix-inspired streaming platform built with the MERN stack (MongoDB, Expres
 
 ## Features
 
-- User authentication (signup, login, logout)
-- Browse movies and TV shows
-- Video playback functionality
-- Search functionality
-- User profiles
-- Responsive design
-- Movie/Show details view
-- Add to watchlist
+- 👤 User authentication (signup, login, logout)
+- 🎥 Browse movies and TV shows
+- 📺 Video playback functionality
+- 🔎 Search functionality
+- 👤 User profiles
+- 💻 Responsive design
+- 📝 Movie/Show details view
 
 ## Tech Stack
 
@@ -61,8 +60,9 @@ npm install
 Create a `.env` file in the root directory with the following variables:
 ```env
 MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
 PORT=5000
+NODE_ENV=development
+JWT_SECRET=your_jwt_secret
 TMDB_API_KEY=your_tmdb_api_key
 ```
 
